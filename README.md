@@ -1,5 +1,5 @@
 
-#Intro
+# Intro
 The financial markets are a great way to make money. There are two types of people who make up the financial markets. One is the investor, and another is the trader. An investor is someone like Warren Buffet, they buy and hold for years. On the other hand, a trader is someone who buys and sells in a short time period. The time period depends on the type of trader you are. One type of trading that is popular is day trading. Day trading is when you buy a security and sell it in the day. People love this strategy because they aren’t in the markets for too long. The problem is due to federal laws, to day trade you need $25,000 in your account. Many people don’t have that type of money to put aside to day trade. With my project I am going to find a way around this. I am going to create a trading strategy. The trading strategy is to buy right before the market closes and sell right after the market opens. This way you will not be in the market for too long. I am also going to create time series models for all stocks in the Nasdaq that predicts one day out with high confidence. This way people can know what stocks to buy. I will be using the stocks from the Nasdaq 100. The Nasdaq 100 contain the biggest 100 nonfinancial companies. I chose them because they are reliable and won’t go bankrupt the next day.
 
 
@@ -97,32 +97,38 @@ When it came to my low Volatility group the stock that had the most correlations
 
 
 ## Steps
-1. The first step is to decompose the trend of VRSN. I am using Stats models to decompose my stocks (Picutre of Decompose) After decomposing it we realize multiple things. First, we understand the general trend is rising. We also realize there is slight seasonality. I am assuming this is  most likely because of earnings and other company related news. I am assuming this......
+1. The first step is to decompose the trend of VRSN. I am using Stats models to decompose my stocks![](Capstone/images/Decompose%20VRSN.png) After decomposing it we realize multiple things. First, we understand the general trend is rising. We also realize there is slight seasonality. I am assuming this is  most likely because of earnings and other company related news. I am assuming this because when earnings or company related news occur the stock price of that company has wild swings for a short period.
 
-2. Next step is to create a baseline model using package stats models. The modeling process uses a SARIMA model (although i imported a SARIMAX model because i found the implementation of the model easier to work with). Here is a picture of stock VRSN with the prediction and the rmse. (Picture of VRSN and the RMSE)
+2. Next step is to create a baseline model using package stats models. The modeling process uses a SARIMA model (although i imported a SARIMAX model because i found the implementation of the model easier to work with). Here is a picture of stock VRSN with the prediction and the rmse.![](Capstone/images/Baseline%20VRSN.png)
 
 3. Tune model using Grid Search
 i tuned my model using a grid search function i found online Function to [Grid search SARIMA model] (https://machinelearningmastery.com/how-to-grid-search-sarima-model-hyperparameters-for-time-series-forecast)(all citations will be linked to the beginning of the README)
 
-here is a graph the same VRSN stock and prediction along with the rmse score using the tuned model.(picture)
+Here is a graph the same VRSN stock and prediction along with the rmse score using the tuned model.![](Capstone/images/Tuned%20Model%20of%20VRSN.png)
 
 4. Apply the tuned model (in other words apply the SARIMA model with the same hyper params as the tuned VRSN model) to all of the stocks that it has a positive correlation with. 
 
-Example of stock that has highest positive correlation and stock with lowest positive correlation. (for each do the same process as others)
+Here is an example of MSFT which had the highest positive correlation wit VRSN before the tuning ![](Capstone/images/Baseline%20MSFT.png)
+
+Here is MSFT tuned with VRSN parameters ![](Capstone/images/MSFT%20using%20VRSN%20params.png)
+
+Here is an example of Pepsi which had the lowest positive correlation among the group with VRSN ![](Capstone/images/Baseline%20Pepsi.png)
+
+Here is Pepsi after it has been tuned with VRSN Params ![](Capstone/images/Pepsi%20with%20VRSN%20params.png)
 
 5. Lastly i am going model each of the stocks it did not have a positive correlation with.
 
-For example  here is the stock ROST. Below is a graph of the baseline SARIMA model applied to its time series as well as the rmse.(picture)
+For example  here is the stock CTXS. Below is a graph of the baseline SARIMA model applied to its time series as well as the rmse.(picture)
 
-Here is the graph of the tuned VRSN model applied to ROST and its rmse.(picture)
+Here is the graph of the tuned VRSN model applied to CTXS and its rmse.![](Capstone/images/CTXS%20using%20Parameters%20of%20VRSN.png)
 
-Here is a model that is tuned to just on ROST and its rmse.(pic)
+Here is a model that is tuned to just on CTSX and its rmse.![](Capstone/images/CTXS%20using%20its%20own%20tuned%20params.png)
 
-As you can see......
+As you can see the rmse is lower when CTSX has its own tuned model
 
 Of the low volatility group that didn’t have a positive correlation with VRSN, i was only able to tune 4/16 of them.
 
-Now to use this strategy you want to compare the stocks recent closing price to the predicted opening price of tommaorw.
+Now to use this strategy you would want to compare the stocks recent closing price to the predicted opening price of tommaorw. This will help you get a better idea wheter you should long or short the stock.
 
 #Future Work
 For the time being this is as far as I was able to make it on the project. The main reason why is because the grid search has a computation time of around 90 minutes for each model on the hardware, I had access too. For my future work I really want to continue on creating predictions for my middle and high volatility groups. Another thing I want to focus on is trying to model and predict volatility using the GARCH model. Lastly, I want to find out is there any alternative way to help find a lower RMSE. For example, I am going to try out using an LSTM neural network to model my stocks. Maybe that might lower my RMSE because it uses neural networks to make predictions.
