@@ -1,5 +1,5 @@
 
-#Intro
+# Intro
 The financial markets are a great way to make money. There are two types of people who make up the financial markets. One is the investor, and another is the trader. An investor is someone like Warren Buffet, they buy and hold for years. On the other hand, a trader is someone who buys and sells in a short time period. The time period depends on the type of trader you are. One type of trading that is popular is day trading. Day trading is when you buy a security and sell it in the day. People love this strategy because they aren’t in the markets for too long. The problem is due to federal laws, to day trade you need $25,000 in your account. Many people don’t have that type of money to put aside to day trade. With my project I am going to find a way around this. I am going to create a trading strategy. The trading strategy is to buy right before the market closes and sell right after the market opens. This way you will not be in the market for too long. I am also going to create time series models for all stocks in the Nasdaq that predicts one day out with high confidence. This way people can know what stocks to buy. I will be using the stocks from the Nasdaq 100. The Nasdaq 100 contain the biggest 100 nonfinancial companies. I chose them because they are reliable and won’t go bankrupt the next day.
 
 
@@ -97,7 +97,7 @@ When it came to my low Volatility group the stock that had the most correlations
 
 
 ## Steps
-1. The first step is to decompose the trend of VRSN. I am using Stats models to decompose my stocks (Picutre of Decompose) After decomposing it we realize multiple things. First, we understand the general trend is rising. We also realize there is slight seasonality. I am assuming this is  most likely because of earnings and other company related news. I am assuming this......
+1. The first step is to decompose the trend of VRSN. I am using Stats models to decompose my stocks [decompose] After decomposing it we realize multiple things. First, we understand the general trend is rising. We also realize there is slight seasonality. I am assuming this is  most likely because of earnings and other company related news. I am assuming this......
 
 2. Next step is to create a baseline model using package stats models. The modeling process uses a SARIMA model (although i imported a SARIMAX model because i found the implementation of the model easier to work with). Here is a picture of stock VRSN with the prediction and the rmse. (Picture of VRSN and the RMSE)
 
