@@ -1,21 +1,33 @@
 
 # Intro
-The financial markets are a great way to make money. There are two types of people who make up the financial markets. One is the investor, and another is the trader. An investor is someone like Warren Buffet, they buy and hold for years. On the other hand, a trader is someone who buys and sells in a short time period. The time period depends on the type of trader you are. One type of trading that is popular is day trading. Day trading is when you buy a security and sell it in the day. People love this strategy because they aren’t in the markets for too long. The problem is due to federal laws, to day trade you need $25,000 in your account. Many people don’t have that type of money to put aside to day trade. With my project I am going to find a way around this. I am going to create a trading strategy. The trading strategy is to buy right before the market closes and sell right after the market opens. This way you will not be in the market for too long. I am also going to create time series models for all stocks in the Nasdaq that predicts one day out with high confidence. This way people can know what stocks to buy. I will be using the stocks from the Nasdaq 100. The Nasdaq 100 contain the biggest 100 nonfinancial companies. I chose them because they are reliable and won’t go bankrupt the next day.
+The financial markets are a great way to make money. **There are two types of people who make up the financial markets.** 
+
+1. The investor
+2. The trader. 
+
+An *investor* is someone like Warren Buffet. They buy and hold for years. On the other hand, a trader is someone who buys and sells in a short time period. *The time period depends on the type of trader you are.* One type of trading that is popular is day trading. **Day trading** is when you buy a security and sell it the same day. People love this strategy because they aren’t in the markets for too long. 
+
+------
+**The problem**  
 
 
+Many are not able to utilize the day trading technique due to a [federal law](https://www.investopedia.com/terms/p/patterndaytrader.asp) that requires traders to have $25,000 on hand. Many people don’t have that type of money to put aside for day trading. This project seeks to create a trading strategy that would allow individuals with <$25,000 to buy right before the market closes and sell right after the market opens. 
 
+In this project, I use time series forecasting of all stocks in the Nasdaq 100 to predict one day out with high confidence and enhance the likelikhood of profitability with this trading strategy. 
 
+*The Nasdaq 100* contains the biggest 100 nonfinancial companies. I chose them because they are reliable and won’t go bankrupt the next day. link to laws also explain how u avoid day trading 
 
+---------
 
 
 
 
 # Navigation
-PowerPoint which I used to present this project is in Capstone.pdf 
+[PowerPoint slides ](https://github.com/sabiru7860/Capstone-Project-/blob/master/Capstone/Capstone%20Project.ipynb) which I used to present this project is in Capstone.pdf 
 
 The environment while creating this project is under envirement.yml. This file can be used to create the environment to run the book.
 
-The entire project was done on one notebook. The book name is Capstone Project.ipynb
+The entire project was done on one notebook. The book name is Capstone Project.ipynb[Project](https://github.com/sabiru7860/Capstone-Project-/blob/master/Capstone/Capstone%20Project.ipynb)
 
 In order to re-create analysis each cell can be done sequentially 
 
@@ -28,45 +40,47 @@ Some code used in this project came from the internet. Here are the links
 
 [Forward Step SARIMA model] (https://www.liip.ch/en/blog/time-series-prediction-a-short-comparison-of-best-practices)
 # Importing Data and Tools
-For the first part of my project i needed to import all of my tools and data. For all the tools I used you can look at the first cell of my notebook. Next I used a python library called yfinance [yfinance](https://pypi.org/project/yfinance/) to get all my stock data. The stocks i decided to use were all the stocks in the NASDAQ 100. These stocks are the biggest 100 nonfinancial companies in America. So, the chances that these stocks bankrupt the next day is impossible. They are safe companies to trade with. 
+For the first part of my project i needed to import all of my tools and data I used Pandas and Numpy for Data reading I used Statsmodels and Sklearn to build my models and get metrics. For all the tools I used you can look at the first cell of my notebook. Next I used a python library called yfinance [yfinance](https://pypi.org/project/yfinance/) to get all my stock data. The stocks I decided to use were all the stocks in the NASDAQ 100. These stocks are the biggest 100 nonfinancial companies in America. So, the chances that these stocks bankrupt the next day is highly improbable. They are safe companies to trade with. 
 
-#Data Cleaning
-For data cleaning I wanted to make sure my data fits my needs that is required for my process. After looking at my data I had a great understanding of what i needed to do to clean my data steps.
+# Data Cleaning
+For data cleaning I wanted to make sure my data fits the needs required for my process. After looking at my data I had a great understanding of what I needed to do to clean my data steps.
+
 ## What needs to be done?
-1. Drop Columns everything except opening price 
-2. Drop potential Stocks (If for whatever reason stocks didnt download correctly or have missing data)
+1. Drop columns everything except opening price 
+2. Drop potential stocks (If for whatever reason stocks didnt download correctly or have missing data)
 3. Delete next day holding rows from dataset
-4. Fix Shape of my dataset
+4. Fix shape of my dataset
 5. Normalize data
 
-You can learn more about my process in the data cleaning section of my Capstone notebook
+You can learn more about my process in the data cleaning section of my [Capstone notebook](https://github.com/sabiru7860/Capstone-Project-/blob/master/Capstone/Capstone%20Project.ipynb)
 
-#Initial EDA
- Explanatory Data Analysis is the process where you explore your data. You do this step so you can become more familiar with your data. For my eda I decided to look at two interesting features that all stocks have
+
+
+# Initial EDA
+ Explanatory Data Analysis is the process where you explore your data. You do this step so you can become more familiar with your data. For my eda I decided to look at two characteristics that all stocks have. This allowed me to to break down my stocks into groups.
  
  1. Volatility 
  2. Correlation
 
-#Volatility
-Volatility is a financial term for standard deviation. It basically shows you how a stock behaves. If a stock has a high standard deviation then it is prone to have wild swings. These stocks are best for people who love risk. On the other hand stocks that have low volatility are stocks that don’t move too much, These are better for people who have low risk tolerance. i split my dataset into 3 groups. I calculated standard deviation for the opening price of each stock. Then sorted list based on the size of standard deviation. Finally i used that to bucket my stocks as follows:
+# Volatility
+Volatility is a financial term for standard deviation. It basically shows you how a stock behaves. If a stock has a high standard deviation then it is prone to have wild swings. These stocks are best for people who love risk. On the other hand stocks that have low volatility are stocks that don’t move too much, These are better for people who have low risk tolerance. I split my dataset into 3 groups. I calculated standard deviation for the opening price of each stock. Then sorted the list based on the size of standard deviation. Finally I used that to bucket my stocks as follows:
 
 1. Low 
-  1. The 50 stocks with lowest std
+  - The 50 stocks with lowest std
 2. Medium
-	1. Stocks with the 51st to 26th highest std
+	- Stocks with the 51st to 26th highest std
 3. High
-	1. Top 25 stocks with the highest std
+	- Top 25 stocks with the highest std
 
-You can find more about this process under the Volatility head in my Capstone notebook Capstone Project.ipynb
+You can find more about this process under the Volatility head in my Capstone notebook Capstone Project.ipynb [Notebook](https://github.com/sabiru7860/Capstone-Project-/blob/master/Capstone/Capstone%20Project.ipynb)
 
 
-#Correlation
-Correlations between stocks prices appear frequently in the markets. One general rule in investing is to have a diversified portfolio. In other words, we do not want stocks that have strong correlation with each other. 
-So, what I did was within each volatility group i decided to see if stocks correlate with other stocks within them. I decided to use a correlation of 50% or more. This is something i am going to refer as a positive correlation. 
+# Correlation
+Correlations between stocks prices appear frequently in the markets. Within each volatility group I stocks that have a correlation of 50% or more. This is something I will refer to going forward as a positive correlation stock. 
 
-Another way correlation will help me is that i decided that if a stock has a positive correlation to lots of other stocks, I will model that stock and apply it to the stocks it has a positive correlation with. This will save time and computing power.
+Another way correlation will help me is that I decided that if a stock has a positive correlation to lots of other stocks, I will model that stock and apply it to the stocks it has a positive correlation with. This will save time and computing power.
 
-## Steps i am going to achieve this
+## Steps to achieve this
 In each volatility group I am going to:
 1. use the correlation function to see the correlations among the stocks.
 2.From those results I am going to select the stock that has the greatest number of positive correlations within that group.
@@ -118,7 +132,7 @@ Here is Pepsi after it has been tuned with VRSN Params ![](Capstone/images/Pepsi
 
 5. Lastly i am going model each of the stocks it did not have a positive correlation with.
 
-For example  here is the stock CTXS. Below is a graph of the baseline SARIMA model applied to its time series as well as the rmse.(picture)
+For example  here is the stock CTXS. Below is a graph of the baseline SARIMA model applied to its time series as well as the rmse
 
 Here is the graph of the tuned VRSN model applied to CTXS and its rmse.![](Capstone/images/CTXS%20using%20Parameters%20of%20VRSN.png)
 
