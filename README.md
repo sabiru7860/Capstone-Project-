@@ -76,7 +76,7 @@ You can find more about this process under the Volatility head in my Capstone no
 
 
 # Correlation
-Correlations between stocks prices appear frequently in the markets. Within each volatility group I stocks that have a correlation of 50% or more. This is something I will refer to going forward as a positive correlation stock. 
+Correlations between stocks prices appear frequently in the markets. Within each volatility group I decided to group stocks that have a correlation of 50% or more. This is something I will refer to going forward as a positive correlation stock. 
 
 Another way correlation will help me is that I decided that if a stock has a positive correlation to lots of other stocks, I will model that stock and apply it to the stocks it has a positive correlation with. This will save time and computing power.
 
